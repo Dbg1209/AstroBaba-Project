@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Vector3 movement;
     private Animator currentAnimator;
-    public bool isAttacking, isGrounded;
+    public bool isAttacking, isGrounded, isPushing;
     public bool isDead = false;
+
+    private GameObject currentObstacle = null;
 
     void Start()
     {   
@@ -58,6 +60,22 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        // Empuje con X
+        if (Input.GetKey(KeyCode.X))
+        {
+            isPushing = true;
+        }
+        else
+        {
+            isPushing = false;
+        }
+
+        // Si estamos dejando de empujar, desvincular el objeto
+        if (!isPushing && currentObstacle != null)
+        {
+            DetachObstacle();
+        }
+
     }
 
     void FixedUpdate()
@@ -76,6 +94,18 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (isPushing)
+            {
+                AttachObstacle(collision.gameObject);
+            }
+            else if (!isPushing)
+            {
+                collision.gameObject.transform.SetParent(null);
+            }
         }
     }
 
@@ -98,7 +128,6 @@ public class PlayerController : MonoBehaviour
                 currentAnimator = model3.GetComponent<Animator>();
                 break;
             default:
-                Debug.LogWarning("Unknown item type!");
                 break;
         }
         
@@ -135,15 +164,31 @@ public class PlayerController : MonoBehaviour
 
 
     //Saltar
+
     void Jump()
     {
         playerRb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         isGrounded = false;
     }
 
-    //Empujar objetos
-    void PushObstacle()
+    //Mecanica de empujar
+   
+    void AttachObstacle(GameObject obstacle)
     {
-
+        if (obstacle != null)
+        {
+            currentObstacle = obstacle;
+            currentObstacle.transform.SetParent(transform);
+        }
     }
+
+    void DetachObstacle()
+    {
+        if (currentObstacle != null)
+        {
+            currentObstacle.transform.SetParent(null);
+            currentObstacle = null;
+        }
+    }
+
 }

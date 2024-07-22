@@ -9,6 +9,7 @@ TagManager:
   - Model2
   - Model3
   - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX
