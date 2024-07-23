@@ -10,6 +10,9 @@ TagManager:
   - Model3
   - Ground
   - Obstacle
+  - EnvironmentWall
+  - EnvironmentBush
+  - EnvironmentPlant1
   layers:
   - Default
   - TransparentFX
