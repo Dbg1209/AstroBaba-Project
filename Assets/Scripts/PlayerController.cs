@@ -1,17 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed, rotationSpeed;
-    [SerializeField] private GameObject model1, model2, model3;
-    private float moveVertical, moveHorizontal;
+    [Header("Player Settings")]
+
     private Rigidbody playerRb;
+    [SerializeField] private float speed, rotationSpeed;
+    private float moveVertical, moveHorizontal;
     private Vector3 movement;
+
+    [Header("Player Models")]
+
+    [SerializeField] private GameObject model1, model2, model3;
+    private List<GameObject> absorbedModels = new List<GameObject>();
+    private GameObject currentModel;
+    private int currentModelIndex = -1;
+
+    [Header("Animations")]
     private Animator currentAnimator;
+
+
+    [Header("States")]
+
     public bool isAttacking, isGrounded, isPushing;
     public bool isDead = false;
-
     private GameObject currentObstacle = null;
+   
 
     void Start()
     {   
@@ -23,6 +38,10 @@ public class PlayerController : MonoBehaviour
         model1.SetActive(true);
         model2.SetActive(false);
         model3.SetActive(false);
+
+        absorbedModels.Add(model1);
+        currentModel = model1;
+        currentModelIndex = 0;
 
         currentAnimator = model1.GetComponent<Animator>();
     }
@@ -76,6 +95,13 @@ public class PlayerController : MonoBehaviour
             DetachObstacle();
         }
 
+        // Cambiar de modelo con Q
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ChangeModel();
+        }
+
+
     }
 
     void FixedUpdate()
@@ -102,10 +128,6 @@ public class PlayerController : MonoBehaviour
             {
                 AttachObstacle(collision.gameObject);
             }
-            else if (!isPushing)
-            {
-                collision.gameObject.transform.SetParent(null);
-            }
         }
     }
 
@@ -113,32 +135,31 @@ public class PlayerController : MonoBehaviour
     void AbsorbEnemy(string name)
     {
         Debug.Log(name);
-        model1.SetActive(false);
-        model2.SetActive(false);
-        model3.SetActive(false);
+
+        GameObject newModel = null;
 
         switch (name)
         {
             case "Enemy_Capsula":
-                model2.SetActive(true);
-                currentAnimator = model2.GetComponent<Animator>();
+                newModel = model2;
                 break;
             case "Enemy_Cube":
-                model3.SetActive(true);
-                currentAnimator = model3.GetComponent<Animator>();
+                newModel = model3;
                 break;
             default:
-                break;
+                Debug.LogWarning("Unknown item type!");
+                return;
         }
-        
-        //Actualizar el isMoving con el nuevo parametro
-        if (currentAnimator != null)
+
+        // Si el nuevo modelo no está en la lista de modelos absorbidos, añadirlo
+        if (!absorbedModels.Contains(newModel))
         {
-            bool isMoving = movement.magnitude > 0.1f;
-            currentAnimator.SetBool("isMoving", isMoving);
-            currentAnimator.SetBool("isAttacking", isAttacking);
-            currentAnimator.SetBool("isDead", isDead);
+            absorbedModels.Add(newModel);
+
+            // Activar el nuevo modelo
+            SetCurrentModel(newModel);
         }
+
     }
 
     //Mecanica de ataque
@@ -189,6 +210,36 @@ public class PlayerController : MonoBehaviour
             currentObstacle.transform.SetParent(null);
             currentObstacle = null;
         }
+    }
+
+    //Mecanica de intercambio de modelos / Transformaciones
+    void SetCurrentModel(GameObject newModel)
+    {
+        if (currentModel != null)
+        {
+            currentModel.SetActive(false);
+        }
+
+        currentModel = newModel;
+        currentModel.SetActive(true);
+        currentAnimator = currentModel.GetComponent<Animator>();
+    }
+
+    void ChangeModel()
+    {
+        if (absorbedModels.Count == 0) return;
+
+        // Desactivar el modelo actual
+        if (currentModel != null)
+        {
+            currentModel.SetActive(false);
+        }
+
+        // Cambiar al siguiente modelo en la lista
+        currentModelIndex = (currentModelIndex + 1) % absorbedModels.Count;
+        currentModel = absorbedModels[currentModelIndex];
+        currentModel.SetActive(true);
+        currentAnimator = currentModel.GetComponent<Animator>();
     }
 
 }
