@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {   
         playerRb.MovePosition(playerRb.position + movement * speed * Time.fixedDeltaTime);
     }
 
