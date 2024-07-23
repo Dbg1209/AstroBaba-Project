@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Models")]
 
-    [SerializeField] private GameObject model1, model2, model3;
+    [SerializeField] private GameObject model1, model2, model3, model4;
     private List<GameObject> absorbedModels = new List<GameObject>();
     private GameObject currentModel;
     private int currentModelIndex = -1;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("States")]
 
-    public bool isAttacking, isGrounded, isPushing;
+    public bool isAttacking, isGrounded, isPushing, isHitted, isMoving;
     public bool isDead = false;
     private GameObject currentObstacle = null;
    
@@ -57,13 +57,14 @@ public class PlayerController : MonoBehaviour
 
         //Vector Vertical
         movement = transform.forward * moveVertical;
+        isMoving = movement.magnitude > 0.1f;
 
         // Actualizar la animación de movimiento
         if (currentAnimator != null)
         {
-            bool isMoving = movement.magnitude > 0.1f;
             currentAnimator.SetBool("isMoving", isMoving);
             currentAnimator.SetBool("isAttacking", isAttacking);
+            currentAnimator.SetBool("isHitted", isHitted);
             currentAnimator.SetBool("isDead", isDead);
         }
 
@@ -73,14 +74,20 @@ public class PlayerController : MonoBehaviour
             StartAttack();
         }
 
-        //Saltar con espacio
-        if (Input.GetKeyDown(KeyCode.Space))
+        //Absorber
+        if (Input.GetKeyDown(KeyCode.Space) && currentModel == model1)
         {
+            Debug.Log("Absorbiendo");
+        }
+
+        //Saltar con Espacio
+        if (Input.GetKeyDown(KeyCode.Space) && (currentModel == model2 || currentModel == model4))
+        {   
             Jump();
         }
 
-        // Empuje con X
-        if (Input.GetKey(KeyCode.X))
+        // Empuje con Espacio
+        if (Input.GetKey(KeyCode.Space) && currentModel == model3)
         {
             isPushing = true;
         }
@@ -118,7 +125,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Ground"))
-        {
+        {   
             isGrounded = true;
         }
 
@@ -140,11 +147,14 @@ public class PlayerController : MonoBehaviour
 
         switch (name)
         {
-            case "Enemy_Capsula":
+            case "Enemy1":
                 newModel = model2;
                 break;
-            case "Enemy_Cube":
+            case "Enemy2":
                 newModel = model3;
+                break;
+            case "Enemy3":
+                newModel = model4; 
                 break;
             default:
                 Debug.LogWarning("Unknown item type!");
@@ -187,8 +197,8 @@ public class PlayerController : MonoBehaviour
     //Saltar
 
     void Jump()
-    {
-        playerRb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+    {   
+        playerRb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
         isGrounded = false;
     }
 

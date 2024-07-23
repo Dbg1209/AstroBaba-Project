@@ -13,6 +13,9 @@ TagManager:
   - EnvironmentWall
   - EnvironmentBush
   - EnvironmentPlant1
+  - Victory
+  - GameOver
+  - Model4
   layers:
   - Default
   - TransparentFX
