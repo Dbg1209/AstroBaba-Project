@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 919132148340812285}
   - component: {fileID: 919132148340812286}
   - component: {fileID: 919132148340812287}
+  - component: {fileID: 195540421}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -697,8 +698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAnimator: {fileID: 919132148340812285}
-  healthBar: {fileID: 4284636649807040923}
-  enemyLife: 0
   isMoving: 0
   isHitted: 0
   isDead: 0
@@ -719,6 +718,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &195540421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732664134293039024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba55c5f5b3ff4a046a6be35e9ff1df2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 4284636649807040923}
+  enemyLife: 0
 --- !u!1 &7795186882022427364
 GameObject:
   m_ObjectHideFlags: 0

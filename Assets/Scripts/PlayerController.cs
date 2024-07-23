@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
 
     private Rigidbody playerRb;
-    [SerializeField] private float speed, rotationSpeed, playerLife;
+    [SerializeField] private float speed, rotationSpeed, playerLife, playerDamage;
     [SerializeField] private Slider healthBar;
     private float moveVertical, moveHorizontal;
     private Vector3 movement;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("States")]
 
-    public bool isAttacking, isGrounded, isPushing, isHitted, isMoving;
+    public bool isAttacking, isGrounded, isPushing, isHitted, isMoving, isGameOver;
     public bool isDead = false;
     private GameObject currentObstacle = null;
    
@@ -51,10 +51,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {   
+        //Estado del juego
+        isGameOver = false;
+
         //Comprobar salud Player
         healthBar.value = playerLife;
 
+        //Condicion de GameOver
+        if (playerLife <= 0) 
+        {
+            isGameOver = true;
+        }
+
+        //Controles de movimientos
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
 
@@ -129,8 +139,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) { 
             //collision.gameObject.SetActive(false);
-            AbsorbEnemy(collision.gameObject.name);
+            //AbsorbEnemy(collision.gameObject.name);
+
+            AttackEnemy(collision.gameObject);
         }
+
 
         if (collision.gameObject.CompareTag("Ground"))
         {   
@@ -188,7 +201,8 @@ public class PlayerController : MonoBehaviour
         {
             isAttacking = true;
             currentAnimator.SetBool("isAttacking", isAttacking);
-            Invoke("EndAttack", 0.05f); 
+            Invoke("EndAttack", 0.3f);
+
         }
     }
 
@@ -201,6 +215,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void AttackEnemy(GameObject enemy)
+    {   
+        if (isAttacking)
+        {
+           enemy.GetComponent<EnemyStatus>().enemyLife -= playerDamage;
+           //Debug.Log(enemy.GetComponent<EnemyStatus>().enemyLife);
+        }
+    }
 
     //Saltar
 
