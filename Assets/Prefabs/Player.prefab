@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4063678228479994161, guid: ebe9dfc238c1cb2439d69d4efd45dcb4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b3e9f6657e638840a0e5f1b9722b4c5, type: 2}
     - target: {fileID: 8380726385276557038, guid: ebe9dfc238c1cb2439d69d4efd45dcb4, type: 3}
       propertyPath: m_Name
       value: Slime_Base
