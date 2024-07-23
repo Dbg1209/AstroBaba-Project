@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
 
     private Rigidbody playerRb;
-    [SerializeField] private float speed, rotationSpeed;
+    [SerializeField] private float speed, rotationSpeed, playerLife;
+    [SerializeField] private Slider healthBar;
     private float moveVertical, moveHorizontal;
     private Vector3 movement;
+    
 
     [Header("Player Models")]
 
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = true;
 
         playerRb = GetComponent<Rigidbody>();
+        playerLife = healthBar.value;
         
      
         model1.SetActive(true);
@@ -47,7 +51,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        //Comprobar salud Player
+        healthBar.value = playerLife;
+
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
 
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && currentModel == model1)
         {
             Debug.Log("Absorbiendo");
+            playerLife -= 20;
         }
 
         //Saltar con Espacio
