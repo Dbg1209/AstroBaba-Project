@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("States")]
 
-    public bool isAttacking, isGrounded, isPushing, isHitted, isMoving, isGameOver;
+    public bool isAttacking, isGrounded, isPushing, isHitted, isMoving, isGameOver, isAbsorbing;
     public bool isDead = false;
     private GameObject currentObstacle = null;
    
@@ -98,10 +98,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //Absorber
-        if (Input.GetKeyDown(KeyCode.Space) && currentModel == model1)
+        if (Input.GetKey(KeyCode.Space) && currentModel == model1)
         {
             Debug.Log("Absorbiendo");
-            playerLife -= 20;
+            isAbsorbing = true;
+        }
+        else
+        {
+            isAbsorbing = false;
         }
 
         //Saltar con Espacio
@@ -144,8 +148,9 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) {
-            //collision.gameObject.SetActive(false);
+
             AbsorbEnemy(collision.gameObject.name);
+
 
             AttackEnemy(collision.gameObject);
         }
@@ -168,33 +173,36 @@ public class PlayerController : MonoBehaviour
     //Mecanica de Absorbcion
     void AbsorbEnemy(string name)
     {
-        Debug.Log(name);
-
-        GameObject newModel = null;
-
-        switch (name)
+        if (isAbsorbing)
         {
-            case "Enemy1":
-                newModel = model2;
-                break;
-            case "Enemy2":
-                newModel = model3;
-                break;
-            case "Enemy3":
-                newModel = model4; 
-                break;
-            default:
-                Debug.LogWarning("Unknown item type!");
-                return;
-        }
+            Debug.Log(name);
 
-        // Si el nuevo modelo no está en la lista de modelos absorbidos, añadirlo
-        if (!absorbedModels.Contains(newModel))
-        {
-            absorbedModels.Add(newModel);
+            GameObject newModel = null;
 
-            // Activar el nuevo modelo
-            SetCurrentModel(newModel);
+            switch (name)
+            {
+                case "Enemy1":
+                    newModel = model2;
+                    break;
+                case "Enemy2":
+                    newModel = model3;
+                    break;
+                case "Enemy3":
+                    newModel = model4;
+                    break;
+                default:
+                    Debug.LogWarning("Unknown item type!");
+                    return;
+            }
+
+            // Si el nuevo modelo no está en la lista de modelos absorbidos, añadirlo
+            if (!absorbedModels.Contains(newModel))
+            {
+                absorbedModels.Add(newModel);
+
+                // Activar el nuevo modelo
+                SetCurrentModel(newModel);
+            }
         }
 
     }
