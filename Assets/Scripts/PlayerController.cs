@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,8 @@ public class PlayerController : MonoBehaviour
     [Header("Animations")]
     private Animator currentAnimator;
 
+    [Header("Canvas")]
+    [SerializeField] private GameObject alertCanvas, formCanvas;
 
     [Header("States")]
 
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         playerLife = healthBar.value;
         
+        alertCanvas.SetActive(false);
+        formCanvas.SetActive(false);
      
         model1.SetActive(true);
         model2.SetActive(false);
@@ -161,12 +164,37 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
 
+        if (collision.gameObject.CompareTag("Ship"))
+        {
+            //Temporal
+            alertCanvas.SetActive(true);
+        }
+
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            if (currentModel != model3) 
+            { 
+                formCanvas.SetActive(true);
+            }
+
             if (isPushing)
             {
                 AttachObstacle(collision.gameObject);
             }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle")) 
+        {
+            Invoke("DeactivateFormCanvas", 2f);
+        }
+
+        if (collision.gameObject.CompareTag("Ship"))
+        {
+            //Temporal
+            Invoke("DeactivateAlertCanvas", 2f);
         }
     }
 
@@ -239,7 +267,6 @@ public class PlayerController : MonoBehaviour
         if (isAttacking)
         {   
            enemy.GetComponent<EnemyStatus>().enemyLife -= playerDamage;
-           //Debug.Log(enemy.GetComponent<EnemyStatus>().enemyLife);
         }
     }
 
@@ -299,6 +326,17 @@ public class PlayerController : MonoBehaviour
         currentModel = absorbedModels[currentModelIndex];
         currentModel.SetActive(true);
         currentAnimator = currentModel.GetComponent<Animator>();
+    }
+
+    //Logica del Canvas y Alertas
+    private void DeactivateFormCanvas()
+    {
+        formCanvas.SetActive(false);
+    }
+
+    private void DeactivateAlertCanvas()
+    {
+        alertCanvas.SetActive(false);
     }
 
 }
