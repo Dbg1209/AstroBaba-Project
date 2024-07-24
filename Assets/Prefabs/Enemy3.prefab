@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa24d09454f83e459a5961a37186790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLegColl: {fileID: 7579763083320321440}
 --- !u!54 &4609099811155193679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 5627724218143195806}
   healthBar: {fileID: 4764769322741922421}
   enemyLife: 0
+  damageAmount: 10
 --- !u!1 &314912849870661965
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,9 +461,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6174926938975044813}
+  - component: {fileID: 7579763083320321440}
   m_Layer: 0
   m_Name: LowerLeg.R
-  m_TagString: Untagged
+  m_TagString: EnemyLeg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,6 +485,19 @@ Transform:
   m_Father: {fileID: 3980307123891205429}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7579763083320321440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701270869388341022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010000001, y: 0.01652591, z: 0.00535144}
+  m_Center: {x: -0.000000016337905, y: 0.00658962, z: -0.0023242128}
 --- !u!1 &5447764623159899860
 GameObject:
   m_ObjectHideFlags: 0

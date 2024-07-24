@@ -733,6 +733,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 919132148340812285}
   healthBar: {fileID: 4284636649807040923}
   enemyLife: 0
+  damageAmount: 10
 --- !u!1 &7795186882022427364
 GameObject:
   m_ObjectHideFlags: 0

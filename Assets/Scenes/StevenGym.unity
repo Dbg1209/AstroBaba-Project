@@ -127,16 +127,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4220126443469545457, guid: 509d2c373c67054438482d1033be464a, type: 3}
   m_PrefabInstance: {fileID: 4220126444665781558}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &95942401 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3001571897891190101, guid: 276bdd804e8084e49a536488230c8c2d, type: 3}
-  m_PrefabInstance: {fileID: 8649310042491018920}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &195540419 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 919132148340812285, guid: 822475fe99c6dd548bcd406a737ca9bd, type: 3}
-  m_PrefabInstance: {fileID: 7462069712798502476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &288158138
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,11 +500,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311749293}
   m_CullTransparentMesh: 1
---- !u!95 &1482947285 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5627724218143195806, guid: 6acdc374ab4e96b4cb444a6671072639, type: 3}
-  m_PrefabInstance: {fileID: 5074794018383944766}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509498244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,10 +991,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 916223267}
-    - target: {fileID: 4271309290869082405, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
-      propertyPath: playerDamage
-      value: 35
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
 --- !u!1001 &5074794018383944766
@@ -1019,10 +1000,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1482947287, guid: 6acdc374ab4e96b4cb444a6671072639, type: 3}
-      propertyPath: enemyAnimator
-      value: 
-      objectReference: {fileID: 1482947285}
     - target: {fileID: 233953762722759705, guid: 6acdc374ab4e96b4cb444a6671072639, type: 3}
       propertyPath: m_Name
       value: Enemy3
@@ -1088,18 +1065,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 195540421, guid: 822475fe99c6dd548bcd406a737ca9bd, type: 3}
-      propertyPath: enemyAnimator
-      value: 
-      objectReference: {fileID: 195540419}
-    - target: {fileID: 660840208334487180, guid: 822475fe99c6dd548bcd406a737ca9bd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 660840208334487180, guid: 822475fe99c6dd548bcd406a737ca9bd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6918691911800782090, guid: 822475fe99c6dd548bcd406a737ca9bd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1157,10 +1122,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 95942403, guid: 276bdd804e8084e49a536488230c8c2d, type: 3}
-      propertyPath: enemyAnimator
-      value: 
-      objectReference: {fileID: 95942401}
     - target: {fileID: 1721154304993438030, guid: 276bdd804e8084e49a536488230c8c2d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

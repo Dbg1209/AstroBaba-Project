@@ -16,6 +16,8 @@ TagManager:
   - Victory
   - GameOver
   - Model4
+  - Leg
+  - EnemyLeg
   layers:
   - Default
   - TransparentFX

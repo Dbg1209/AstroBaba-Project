@@ -6,7 +6,7 @@ public class EnemyStatus : MonoBehaviour
 {
     [SerializeField] Animator enemyAnimator;
     [SerializeField] private Slider healthBar;
-    public float enemyLife;
+    public float enemyLife, damageAmount;
     void Start()
     {
         enemyLife = healthBar.value;
@@ -31,5 +31,20 @@ public class EnemyStatus : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
+    }
+
+
+    // Método para manejar las colisiones
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Leg"))
+        {
+            TakeDamage(damageAmount);
+        }
+    }
+
+    private void TakeDamage(float amount)
+    {
+        enemyLife -= amount;
     }
 }

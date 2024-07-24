@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     [SerializeField] private float speed, rotationSpeed, playerLife, playerDamage;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Collider legCollider1, legCollider2;
     private float moveVertical, moveHorizontal;
     private Vector3 movement;
     
@@ -42,10 +44,14 @@ public class PlayerController : MonoBehaviour
         model1.SetActive(true);
         model2.SetActive(false);
         model3.SetActive(false);
+        model4.SetActive(false);
 
         absorbedModels.Add(model1);
         currentModel = model1;
         currentModelIndex = 0;
+        
+        legCollider1.enabled = false;
+        legCollider2.enabled = false;
 
         currentAnimator = model1.GetComponent<Animator>();
     }
@@ -137,9 +143,9 @@ public class PlayerController : MonoBehaviour
     //Colisiones
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) { 
+        if (collision.gameObject.CompareTag("Enemy")) {
             //collision.gameObject.SetActive(false);
-            //AbsorbEnemy(collision.gameObject.name);
+            AbsorbEnemy(collision.gameObject.name);
 
             AttackEnemy(collision.gameObject);
         }
@@ -199,9 +205,11 @@ public class PlayerController : MonoBehaviour
     {
         if (currentAnimator != null)
         {
+            legCollider1.enabled = true;
+            legCollider2.enabled = true;
             isAttacking = true;
             currentAnimator.SetBool("isAttacking", isAttacking);
-            Invoke("EndAttack", 0.3f);
+            Invoke("EndAttack", 0.5f);
 
         }
     }
@@ -213,12 +221,15 @@ public class PlayerController : MonoBehaviour
         {
             currentAnimator.SetBool("isAttacking", isAttacking);
         }
+        legCollider1.enabled = false;
+        legCollider2.enabled = false;
+
     }
 
     void AttackEnemy(GameObject enemy)
     {   
         if (isAttacking)
-        {
+        {   
            enemy.GetComponent<EnemyStatus>().enemyLife -= playerDamage;
            //Debug.Log(enemy.GetComponent<EnemyStatus>().enemyLife);
         }
