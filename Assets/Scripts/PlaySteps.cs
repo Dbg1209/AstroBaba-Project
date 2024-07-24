@@ -17,4 +17,8 @@ public class PlaySteps : MonoBehaviour
  {
     AudioManager.PlaySound(SoundType.RobotMovement);
  }
+ public void PlayRobotJump()
+ {
+    AudioManager.PlaySound(SoundType.RobotJump);
+ }
 }

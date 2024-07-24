@@ -12,6 +12,11 @@ public class AIMechaController : MonoBehaviour
     public float timeToRotate = 2;
     public float speedWalk = 3;
     public float speedRun = 5;
+
+    //Enemy Animation
+
+    public Animator animator;
+    
    
     //Enemy View Radious
     public float viewRadius = 15;
@@ -47,6 +52,8 @@ public class AIMechaController : MonoBehaviour
         m_playerInRange = false;
         m_waitTime = startWaitTime;
         m_TimeToRotate = timeToRotate;
+
+        animator = GetComponent<Animator>();
 
         m_currentWaypointIndex = 0;
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -115,11 +122,13 @@ public class AIMechaController : MonoBehaviour
             {
                 Move(speedWalk);
                 LookingPlayer(playerLastPosition);
+                animator.SetBool("isMoving", true);
             }
             else
             {
                 Stop();
                 m_TimeToRotate -= Time.deltaTime;
+                animator.SetBool("isMoving", false);  
             }
         }
         else
@@ -134,11 +143,15 @@ public class AIMechaController : MonoBehaviour
                     NextPoint();
                     Move(speedWalk);
                     m_waitTime = startWaitTime;
+                    
+                    animator.SetBool("isMoving", true);
                 }
                 else 
                 {
                     Stop();
-                    m_waitTime -= Time.deltaTime;   
+                    m_waitTime -= Time.deltaTime;
+                    
+                    animator.SetBool("isMoving", false);   
                 }
             }
         }
@@ -147,6 +160,8 @@ public class AIMechaController : MonoBehaviour
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
+        Debug.Log("Move");
+        animator.SetBool("isMoving", true);
     }
 
     void Stop()
@@ -159,6 +174,8 @@ public class AIMechaController : MonoBehaviour
     {
         m_currentWaypointIndex = (m_currentWaypointIndex + 1) % waypoints.Length;
         navMeshAgent.SetDestination(waypoints[m_currentWaypointIndex].position);
+        animator.SetBool("isMoving", true);
+        Debug.Log("Next Point");
     }
     void CaughtPlayer()
     {
