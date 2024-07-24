@@ -18,6 +18,7 @@ TagManager:
   - Model4
   - Leg
   - EnemyLeg
+  - Barril
   layers:
   - Default
   - TransparentFX
