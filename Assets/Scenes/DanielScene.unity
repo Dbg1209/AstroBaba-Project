@@ -204,7 +204,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1465464244}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 23.674, y: 0, z: 0}
 --- !u!1 &241221018
 GameObject:
@@ -740,7 +740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640947413}
   - component: {fileID: 640947412}
-  - component: {fileID: 640947411}
+  - component: {fileID: 640947414}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -748,43 +748,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &640947411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640947410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b88ad38e3bb27549a94208b51356ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundList:
-  - name: Movement
-    sounds:
-    - {fileID: 8300000, guid: 11f04aff188f27c47af184d811a7f467, type: 3}
-    - {fileID: 8300000, guid: 1bc557d1f6614d240a7b1371d918d63d, type: 3}
-    - {fileID: 8300000, guid: 7124412fbf1e2d4408456ea25805695b, type: 3}
-    - {fileID: 8300000, guid: ac38a01bf8a808e42989c1120829dcf9, type: 3}
-    - {fileID: 8300000, guid: 412c3a097944877449b3bf299ce16b4b, type: 3}
-  - name: Jump
-    sounds:
-    - {fileID: 8300000, guid: 2cdb50b7f74562b4baf87442eb8fcc9e, type: 3}
-    - {fileID: 8300000, guid: 8f392d384311fd647bf1ca36a9102a5b, type: 3}
-    - {fileID: 8300000, guid: 9bb664d17ccdf894a86b69baccdff448, type: 3}
-    - {fileID: 8300000, guid: a0e63a47bc1e39740b772eaa6b59d9ed, type: 3}
-    - {fileID: 8300000, guid: 154a852db30ad04419fcda691e16f2b2, type: 3}
-    - {fileID: 8300000, guid: 37cf8d22f08c6c743b4dae0f198c9150, type: 3}
-    - {fileID: 8300000, guid: 8c5ddd837446e3f43873fb3a6f00e947, type: 3}
-    - {fileID: 8300000, guid: 219f77ffe3bf97443a162040be54118e, type: 3}
-  - name: Attack
-    sounds:
-    - {fileID: 8300000, guid: 58e47931d2f159f4c8dd67979805459f, type: 3}
-    - {fileID: 8300000, guid: 195efbbb3bb37a748bf6d54494f2f542, type: 3}
-  - name: Absorption
-    sounds:
-    - {fileID: 8300000, guid: be41b8cc02d12a647b3b2784190a19e4, type: 3}
 --- !u!82 &640947412
 AudioSource:
   m_ObjectHideFlags: 0
@@ -896,6 +859,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640947414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640947410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b88ad38e3bb27549a94208b51356ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - name: SlimeMovement
+    sounds: []
+  - name: CharacterJump
+    sounds: []
+  - name: RobotJump
+    sounds: []
+  - name: SlimeAttack
+    sounds: []
+  - name: RobotMovement
+    sounds: []
+  - name: RobotSteps
+    sounds: []
+  - name: RobotAttack
+    sounds: []
+  - name: Absorption
+    sounds: []
 --- !u!1 &755097179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271309290869082402, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.67
+      value: 3.06
       objectReference: {fileID: 0}
     - target: {fileID: 4271309290869082402, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1373,7 +1365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271309290869082402, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.59
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 4271309290869082402, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_LocalRotation.w
