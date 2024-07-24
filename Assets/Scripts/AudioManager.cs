@@ -6,10 +6,17 @@ using System;
 
 public enum SoundType
 {
-    Movement,
-    Jump,
-    Attack,
-    Absorption
+    SlimeMovement,
+    CharacterJump,
+    RobotJump,
+    SlimeAttack,
+    RobotMovement,
+    RobotSteps,
+    RobotLanding,
+    RobotAttack,
+    Absorption,
+    UI
+
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
