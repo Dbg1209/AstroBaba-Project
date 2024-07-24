@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIUXManager : MonoBehaviour
 {
-    [SerializeField] private GameObject victoryCanvas, defeatCanvas, controlCanvas, creditsCanvas;
+    [SerializeField] private GameObject victoryCanvas, defeatCanvas, controlCanvas, creditsCanvas, mainMenuCanvas;
 
 
     private void Start()
@@ -11,6 +11,16 @@ public class UIUXManager : MonoBehaviour
         defeatCanvas.SetActive(false);
         controlCanvas.SetActive(false);
         creditsCanvas.SetActive(false);
+    }
+
+    public void ShowMainMenu() 
+    { 
+        mainMenuCanvas.SetActive(true);
+    }
+
+    public void HideMainMenu()
+    {
+        mainMenuCanvas.SetActive(false);
     }
 
     public void ShowControls()
