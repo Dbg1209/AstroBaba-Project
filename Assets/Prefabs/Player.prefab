@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4271309290869082402}
   - component: {fileID: 4271309290869082403}
   - component: {fileID: 4271309290869082405}
+  - component: {fileID: 1881363176}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -86,6 +87,24 @@ MonoBehaviour:
   isGameOver: 0
   isAbsorbing: 0
   isDead: 0
+--- !u!114 &1881363176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271309290869082400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280839a1f2169044db26d51c8590c4fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalCard1: {fileID: 0}
+  portalCard2: {fileID: 0}
+  portalCard3: {fileID: 0}
+  newPosition1: {x: -13.83, y: 17.08, z: 113.3}
+  newPosition2: {x: -13.18, y: 0.87, z: 177.66}
+  newPosition3: {x: -5.23, y: 0.68, z: 60}
 --- !u!1001 &4096164338829585244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,6 +217,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 8380726385276557038, guid: ebe9dfc238c1cb2439d69d4efd45dcb4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9152865381421370452, guid: ebe9dfc238c1cb2439d69d4efd45dcb4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -295,6 +318,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &1382729967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695064606451393213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.1381385, z: 1.8638306}
+  m_Center: {x: 0, y: 0.97623193, z: 0.37586975}
 --- !u!1001 &5677154113689515993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -302,6 +338,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4271309290869082402}
     m_Modifications:
+    - target: {fileID: 1624676242791491938, guid: 2f06405a894afbb49bb093d450ee5f8f, type: 3}
+      propertyPath: m_TagString
+      value: Model2
+      objectReference: {fileID: 0}
     - target: {fileID: 2640387758565967647, guid: 2f06405a894afbb49bb093d450ee5f8f, type: 3}
       propertyPath: m_Name
       value: Slime_Enemy1
