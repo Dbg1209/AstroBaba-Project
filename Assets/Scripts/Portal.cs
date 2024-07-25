@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    private GameObject obj;
+    public GameObject portalCard;
 
     public bool CardIsInLevel = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        obj = GameObject.Find("PortalCard1");
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,7 +20,7 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Model2") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Model1"))
         {
-            if (obj != null)
+            if (portalCard != null)
             {
                 CardIsInLevel = true;
             }
