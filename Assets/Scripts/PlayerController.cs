@@ -29,10 +29,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TMP_Text babaText;
 
     [Header("Canvas")]
-    [SerializeField] private GameObject alertCanvas, formCanvas;
+    [SerializeField] private GameObject alertCanvas, formCanvas, specialControls;
 
     [Header("States")]
 
+    [SerializeField] AudioSource babaSound;
     public bool isAttacking, isGrounded, isPushing, isHitted, isMoving, isGameOver, isAbsorbing;
     public bool isDead = false;
     private GameObject currentObstacle = null;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
         
         alertCanvas.SetActive(false);
         formCanvas.SetActive(false);
+        specialControls.SetActive(false);
      
         model1.SetActive(true);
         model2.SetActive(false);
@@ -223,7 +225,7 @@ public class PlayerController : MonoBehaviour
         {
             baba += 1;
             playerLife = 100;
-            collision.gameObject.SetActive(false);
+            babaSound.Play();
         }
     }
 
@@ -388,6 +390,16 @@ public class PlayerController : MonoBehaviour
     private void DeactivateAlertCanvas()
     {
         alertCanvas.SetActive(false);
+    }
+
+    public void ShowControls() 
+    { 
+        specialControls.SetActive(true);
+    }
+
+    public void HideControls()
+    {
+        specialControls.SetActive(false); 
     }
 
     private void SwitchSprite()
