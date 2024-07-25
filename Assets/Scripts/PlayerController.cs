@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animations")]
     private Animator currentAnimator;
-    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert;
+    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert, spaceBarAlert;
     [SerializeField] TMP_Text babaText;
 
     [Header("Canvas")]
@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         spriteModel2.SetActive(false);
         spriteModel3.SetActive(false);
         absorbAlert.SetActive(false);
+        spaceBarAlert.SetActive(true);
 
         absorbedModels.Add(model1);
         currentModel = model1;
@@ -122,8 +123,8 @@ public class PlayerController : MonoBehaviour
         //Absorber
         if (Input.GetKey(KeyCode.Space) && currentModel == model1)
         {
-            Debug.Log("Absorbiendo");
             isAbsorbing = true;
+            spaceBarAlert.SetActive(false);
         }
         else
         {
