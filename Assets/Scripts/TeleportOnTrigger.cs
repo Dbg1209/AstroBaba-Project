@@ -25,7 +25,7 @@ public class TeleportOnTrigger : MonoBehaviour
             Debug.Log(portalCardScript1.CardIsInLevel);
             transform.position = newPosition1;
         }
-        if (other.gameObject.CompareTag("Portal") && !portalCardScript2.CardIsInLevel)
+        if (other.gameObject.CompareTag("Portal2") && !portalCardScript2.CardIsInLevel)
         {
             Debug.Log(portalCardScript2.CardIsInLevel);
             transform.position = newPosition2;
