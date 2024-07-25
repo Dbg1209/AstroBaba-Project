@@ -24638,6 +24638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2005158580}
     m_Modifications:
+    - target: {fileID: 543450653339632549, guid: 1b842338a46685a4e9cebc41a1143037, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3726217142899559921, guid: 1b842338a46685a4e9cebc41a1143037, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -39752,6 +39756,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 982290929, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000002861
+      objectReference: {fileID: 0}
+    - target: {fileID: 982290929, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30.309
+      objectReference: {fileID: 0}
+    - target: {fileID: 982290930, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_text
+      value: You need a card to use the portal and go to the next level. Also the
+        Bee transform is needed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 982290930, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_margin.z
+      value: -29.922287
+      objectReference: {fileID: 0}
     - target: {fileID: 1382729967, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_Size.y
       value: 1.3918931
@@ -39772,6 +39793,26 @@ PrefabInstance:
       propertyPath: portalCard3
       value: 
       objectReference: {fileID: 1179270360}
+    - target: {fileID: 2139573940, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139573941, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 603.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139573941, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139573941, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00003916
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139573941, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 282.74127
+      objectReference: {fileID: 0}
     - target: {fileID: 4271309290869082400, guid: 4974e21a0e71250499b91f15a94cf424, type: 3}
       propertyPath: m_Name
       value: Player
