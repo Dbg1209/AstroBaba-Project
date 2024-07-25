@@ -23,6 +23,8 @@ TagManager:
   - Portal
   - Ship
   - Baba
+  - Portal2
+  - Portal3
   layers:
   - Default
   - TransparentFX

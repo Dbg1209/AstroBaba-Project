@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animations")]
     private Animator currentAnimator;
-    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert, spaceBarAlert;
+    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert, spaceBarAlert, objectiveAlert;
     [SerializeField] TMP_Text babaText;
 
     [Header("Canvas")]
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         spriteModel3.SetActive(false);
         absorbAlert.SetActive(false);
         spaceBarAlert.SetActive(true);
+        objectiveAlert.SetActive(true);
 
         absorbedModels.Add(model1);
         currentModel = model1;
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             isAbsorbing = true;
             spaceBarAlert.SetActive(false);
+            objectiveAlert.SetActive(false);
         }
         else
         {
@@ -174,10 +176,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) {
 
+            if (!isAbsorbing || !isAttacking) {
+                playerLife -= 1;
+            }
+            else
+            {
+                return;
+            }
+
+
             AbsorbEnemy(collision.gameObject.name);
 
 
             AttackEnemy(collision.gameObject);
+
         }
 
 
@@ -205,6 +217,13 @@ public class PlayerController : MonoBehaviour
             {
                 AttachObstacle(collision.gameObject);
             }
+        }
+
+        if (collision.gameObject.CompareTag("Baba")) 
+        {
+            baba += 1;
+            playerLife = 100;
+            collision.gameObject.SetActive(false);
         }
     }
 
