@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6ed891a973095994ca0e56f2b60922d2
   - enabled: 1
-    path: Assets/Scenes/StevenGym.unity
-    guid: 58c7f366efa81654090f374f34a3735d
+    path: Assets/Scenes/EscenaJorgeConEnemigos.unity
+    guid: 67141f35c0944f84fa010448a8d18c18
   m_configObjects: {}

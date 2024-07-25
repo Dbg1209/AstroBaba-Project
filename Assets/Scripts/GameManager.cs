@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         state = GameState.Playing;
+        HideAll();
     }
 
     void Update()
@@ -42,6 +43,12 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
+    }
+
+    public void HideAll()
+    {
+        uiUXManager.HideGameOver();
+        uiUXManager.HideVictory();
     }
 
     //Cambiar a la escena de MainMenu
@@ -60,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         uiUXManager.HideMainMenu();
         Time.timeScale = 1f;
-        SceneManager.LoadScene("StevenGym");
+        SceneManager.LoadScene("EscenaJorgeConEnemigos");
         state = GameState.Playing;
     }
 
@@ -81,19 +88,28 @@ public class GameManager : MonoBehaviour
     //Reiniciar la escena actual
     public void RestartScene()
     {
-        uiUXManager.HideVictory();
+        state = GameState.Playing;
         uiUXManager.HideGameOver();
+        uiUXManager.HideVictory();
         uiUXManager.HideMainMenu();
         Time.timeScale = 1f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-        state = GameState.Playing;
     }
 
     public void GameOver()
-    {   
+    {
         uiUXManager.ShowGameOver();
-        state = GameState.GameOver;
+        //state = GameState.GameOver;
+        Time.timeScale = 0f;
     }
+
+    public void Victory()
+    {
+        uiUXManager.ShowVictory();
+        Time.timeScale = 0f;
+    }
+
+    public void TimeScale() { Time.timeScale = 1f; }
 
 }

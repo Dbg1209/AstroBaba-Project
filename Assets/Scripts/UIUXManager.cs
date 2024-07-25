@@ -7,8 +7,8 @@ public class UIUXManager : MonoBehaviour
 
     private void Start()
     {
-        victoryCanvas.SetActive(false);
-        defeatCanvas.SetActive(false);
+
+        //GameManager.Instance.HideAll();
         controlCanvas.SetActive(false);
         creditsCanvas.SetActive(false);
     }
@@ -50,7 +50,10 @@ public class UIUXManager : MonoBehaviour
 
     public void HideVictory()
     {
-        victoryCanvas?.SetActive(false);
+        if (victoryCanvas != null)
+        {
+            victoryCanvas.SetActive(false);
+        }
     }
     public void ShowGameOver()
     {
@@ -59,6 +62,9 @@ public class UIUXManager : MonoBehaviour
 
     public void HideGameOver()
     {
-        defeatCanvas.SetActive(false);
+        if (defeatCanvas != null)
+        {
+            defeatCanvas.SetActive(false);
+        }
     }
 }

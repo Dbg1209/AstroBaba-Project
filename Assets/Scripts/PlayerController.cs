@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider legCollider1, legCollider2;
     private float moveVertical, moveHorizontal;
     private Vector3 movement;
+    public float baba;
     
 
     [Header("Player Models")]
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animations")]
     private Animator currentAnimator;
+    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert;
+    [SerializeField] TMP_Text babaText;
 
     [Header("Canvas")]
     [SerializeField] private GameObject alertCanvas, formCanvas;
@@ -35,8 +39,14 @@ public class PlayerController : MonoBehaviour
    
 
     void Start()
-    {   
+    {
+        GameManager.Instance.HideAll();
+        GameManager.Instance.TimeScale();
+        endCinematic.SetActive(false);
+
         isGrounded = true;
+
+        baba = 0f;
 
         playerRb = GetComponent<Rigidbody>();
         playerLife = healthBar.value;
@@ -48,6 +58,11 @@ public class PlayerController : MonoBehaviour
         model2.SetActive(false);
         model3.SetActive(false);
         model4.SetActive(false);
+
+        spriteModel1.SetActive(true);
+        spriteModel2.SetActive(false);
+        spriteModel3.SetActive(false);
+        absorbAlert.SetActive(false);
 
         absorbedModels.Add(model1);
         currentModel = model1;
@@ -67,10 +82,14 @@ public class PlayerController : MonoBehaviour
         //Comprobar salud Player
         healthBar.value = playerLife;
 
+        //Actualizar baba
+        babaText.text = "Baba: " + baba + " / 6";
+
         //Condicion de GameOver
         if (playerLife <= 0) 
         {
             isGameOver = true;
+            GameManager.Instance.GameOver();
         }
 
         //Controles de movimientos
@@ -139,6 +158,8 @@ public class PlayerController : MonoBehaviour
             ChangeModel();
         }
 
+        //Comprobar Sprite
+        SwitchSprite();
 
     }
 
@@ -172,6 +193,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            isGrounded = true;
+
             if (currentModel != model3) 
             { 
                 formCanvas.SetActive(true);
@@ -193,8 +216,14 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ship"))
         {
-            //Temporal
-            Invoke("DeactivateAlertCanvas", 2f);
+            if (baba < 6) 
+            {
+                Invoke("DeactivateAlertCanvas", 2f);
+            }
+            else if(baba == 6) 
+            {
+                endCinematic.SetActive(true);
+            }
         }
     }
 
@@ -209,13 +238,13 @@ public class PlayerController : MonoBehaviour
 
             switch (name)
             {
-                case "Enemy1":
+                case "T_Enemy_A":
                     newModel = model2;
                     break;
-                case "Enemy2":
+                case "L1_Enemy_B":
                     newModel = model3;
                     break;
-                case "Enemy3":
+                case "L2_Enemy_C_1":
                     newModel = model4;
                     break;
                 default:
@@ -341,4 +370,19 @@ public class PlayerController : MonoBehaviour
         alertCanvas.SetActive(false);
     }
 
+    private void SwitchSprite()
+    {
+        if (baba >= 3 && baba < 6) 
+        { 
+            spriteModel1.SetActive(false);
+            spriteModel2.SetActive(true);
+        }
+
+        if (baba == 6) 
+        {
+            spriteModel2.SetActive(false);
+            spriteModel3.SetActive(true);
+            absorbAlert.SetActive(true);
+        }
+    }
 }
