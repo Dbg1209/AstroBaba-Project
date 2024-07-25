@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) {
 
             if (!isAbsorbing || !isAttacking) {
-                playerLife -= 1;
+                playerLife -= 5;
             }
             else
             {
@@ -202,8 +202,10 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ship"))
         {
-            //Temporal
-            alertCanvas.SetActive(true);
+            if (baba < 6) 
+            {
+                alertCanvas.SetActive(true);
+            }
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -238,13 +240,14 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ship"))
         {
-            if (baba < 6) 
+            if (baba >= 6) 
+            {   
+                endCinematic.SetActive(true);
+            }
+            else if(baba < 6)
             {
                 Invoke("DeactivateAlertCanvas", 2f);
-            }
-            else if(baba == 6) 
-            {
-                endCinematic.SetActive(true);
+
             }
         }
     }

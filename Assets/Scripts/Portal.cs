@@ -20,6 +20,7 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Model2") || other.gameObject.CompareTag("Model1") || other.gameObject.CompareTag("Model3") || other.gameObject.CompareTag("Model4"))
         {
+
             if (portalCard != null)
             {
                 CardIsInLevel = true;
