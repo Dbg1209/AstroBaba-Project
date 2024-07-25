@@ -129,15 +129,14 @@ MonoBehaviour:
   viewAngle: 90
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16777216
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33554432
   meshResolution: 1
   edgeIterations: 4
   edgeDistance: 0.5
   waypoints:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   m_waitTime: 0
