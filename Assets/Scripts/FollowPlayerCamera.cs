@@ -12,8 +12,12 @@ public class FollowPlayerCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 desiredPosition = player.position + Quaternion.Euler(0, player.eulerAngles.y, 0) * offset;
+        //Vector3 desiredPosition = player.position + Quaternion.Euler(0, player.eulerAngles.y, 0) * offset;
 
+        //transform.position = desiredPosition;
+
+        // Calcula la posición deseada de la cámara con un offset relativo al jugador
+        Vector3 desiredPosition = player.position + player.TransformDirection(offset);
         transform.position = desiredPosition;
 
         float originalXRotation = transform.eulerAngles.x;
