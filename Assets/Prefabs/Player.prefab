@@ -76,12 +76,15 @@ MonoBehaviour:
   model2: {fileID: 7669004797688754374}
   model3: {fileID: 4804539151055499934}
   model4: {fileID: 2092333352945466646}
+  alertCanvas: {fileID: 0}
+  formCanvas: {fileID: 0}
   isAttacking: 0
   isGrounded: 0
   isPushing: 0
   isHitted: 0
   isMoving: 0
   isGameOver: 0
+  isAbsorbing: 0
   isDead: 0
 --- !u!1001 &4096164338829585244
 PrefabInstance:

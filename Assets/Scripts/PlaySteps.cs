@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class PlaySteps : MonoBehaviour
 {
- public void PlaySound()
+   
+ public void PlaySlimeStep()
  {
-    AudioManager.PlaySound(SoundType.Movement);
+    AudioManager.PlaySound(SoundType.SlimeMovement);
+ }
+ public void PlayRobotStep()
+ {
+    AudioManager.PlaySound(SoundType.RobotSteps);
+ }
+ public void PlayRobotMovement()
+ {
+    AudioManager.PlaySound(SoundType.RobotMovement);
+ }
+ public void PlayRobotJump()
+ {
+    AudioManager.PlaySound(SoundType.RobotJump);
  }
 }

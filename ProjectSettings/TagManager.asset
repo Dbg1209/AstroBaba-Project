@@ -21,6 +21,7 @@ TagManager:
   - Barril
   - CardGoTo2
   - Portal
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -46,8 +47,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Player
+  - Obstacles
   - 
   - 
   - 
