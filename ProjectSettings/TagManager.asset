@@ -19,6 +19,8 @@ TagManager:
   - Leg
   - EnemyLeg
   - Barril
+  - CardGoTo2
+  - Portal
   - Ship
   layers:
   - Default
