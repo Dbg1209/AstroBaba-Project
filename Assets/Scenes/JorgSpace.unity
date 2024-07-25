@@ -7077,7 +7077,7 @@ GameObject:
   - component: {fileID: 381166867}
   m_Layer: 0
   m_Name: GroundWayLevel1 (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12422,7 +12422,7 @@ GameObject:
   - component: {fileID: 672098765}
   m_Layer: 0
   m_Name: GroundWayLevel1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16807,7 +16807,7 @@ GameObject:
   - component: {fileID: 955876892}
   m_Layer: 0
   m_Name: GroundTutorial2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18631,7 +18631,7 @@ GameObject:
   - component: {fileID: 1079476764}
   m_Layer: 0
   m_Name: GroundTutorial
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19766,7 +19766,7 @@ GameObject:
   - component: {fileID: 1122176260}
   m_Layer: 0
   m_Name: GroundWayLevel1 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

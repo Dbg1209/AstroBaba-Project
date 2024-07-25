@@ -273,9 +273,11 @@ public class PlayerController : MonoBehaviour
     //Saltar
 
     void Jump()
-    {   
-        playerRb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
-        isGrounded = false;
+    {
+        if (isGrounded) {
+            playerRb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
+            isGrounded = false;
+        }    
     }
 
     //Mecanica de empujar
