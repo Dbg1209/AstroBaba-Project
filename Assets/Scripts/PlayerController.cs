@@ -25,14 +25,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animations")]
     private Animator currentAnimator;
-    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert, spaceBarAlert;
+    [SerializeField] GameObject endCinematic, spriteModel1, spriteModel2, spriteModel3,absorbAlert, spaceBarAlert, objectiveAlert;
     [SerializeField] TMP_Text babaText;
 
     [Header("Canvas")]
-    [SerializeField] private GameObject alertCanvas, formCanvas;
+    [SerializeField] private GameObject alertCanvas, formCanvas, specialControls;
 
     [Header("States")]
 
+    [SerializeField] AudioSource babaSound;
     public bool isAttacking, isGrounded, isPushing, isHitted, isMoving, isGameOver, isAbsorbing;
     public bool isDead = false;
     private GameObject currentObstacle = null;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
         
         alertCanvas.SetActive(false);
         formCanvas.SetActive(false);
+        specialControls.SetActive(false);
      
         model1.SetActive(true);
         model2.SetActive(false);
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         spriteModel3.SetActive(false);
         absorbAlert.SetActive(false);
         spaceBarAlert.SetActive(true);
+        objectiveAlert.SetActive(true);
 
         absorbedModels.Add(model1);
         currentModel = model1;
@@ -125,6 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             isAbsorbing = true;
             spaceBarAlert.SetActive(false);
+            objectiveAlert.SetActive(false);
         }
         else
         {
@@ -174,10 +178,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) {
 
+            if (!isAbsorbing || !isAttacking) {
+                playerLife -= 5;
+            }
+            else
+            {
+                return;
+            }
+
+
             AbsorbEnemy(collision.gameObject.name);
 
 
             AttackEnemy(collision.gameObject);
+
         }
 
 
@@ -188,8 +202,10 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ship"))
         {
-            //Temporal
-            alertCanvas.SetActive(true);
+            if (baba < 6) 
+            {
+                alertCanvas.SetActive(true);
+            }
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -206,6 +222,13 @@ public class PlayerController : MonoBehaviour
                 AttachObstacle(collision.gameObject);
             }
         }
+
+        if (collision.gameObject.CompareTag("Baba")) 
+        {
+            baba += 1;
+            playerLife = 100;
+            babaSound.Play();
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -217,13 +240,14 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ship"))
         {
-            if (baba < 6) 
+            if (baba >= 6) 
+            {   
+                endCinematic.SetActive(true);
+            }
+            else if(baba < 6)
             {
                 Invoke("DeactivateAlertCanvas", 2f);
-            }
-            else if(baba == 6) 
-            {
-                endCinematic.SetActive(true);
+
             }
         }
     }
@@ -369,6 +393,16 @@ public class PlayerController : MonoBehaviour
     private void DeactivateAlertCanvas()
     {
         alertCanvas.SetActive(false);
+    }
+
+    public void ShowControls() 
+    { 
+        specialControls.SetActive(true);
+    }
+
+    public void HideControls()
+    {
+        specialControls.SetActive(false); 
     }
 
     private void SwitchSprite()
